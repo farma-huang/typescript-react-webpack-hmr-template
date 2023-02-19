@@ -51,7 +51,7 @@ module.exports = {
       //   remote: 'remote@http://localhost:8001/remoteEntry.js',
       // },
       exposes: {
-        './Nav': './src/components/Nav',
+        // './Nav': './src/components/Nav',
         // This is case you want to expose the entire App
         // no see the case but its possible
         // './App': './src/index',
