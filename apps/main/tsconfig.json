@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "es2020",
-    "jsx": "react",
-    "module": "commonjs",
+    "jsx": "react-jsx",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
