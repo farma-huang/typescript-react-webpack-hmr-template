@@ -12,6 +12,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -26,7 +30,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js', '.json', ".tsx"]
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+    },
+    extensions: ['.ts', '.js', '.json', ".tsx"],
   },
   devServer: {
     port: 3000,
@@ -38,5 +45,6 @@ module.exports = {
       template: "public/index.html",
       hash: true, // Cache busting
       filename: '../dist/index.html'
-    })]
+    })
+  ]
 }
