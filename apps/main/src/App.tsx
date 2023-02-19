@@ -1,23 +1,26 @@
-import React from "react";
+  import React, { useState } from "react";
+import { Outlet, Link } from "react-router-dom";
+
+import "./App.css";
 
 const App = () => {
-  const [count, setCount] = React.useState<number>(0);
-
-  const increment = () => {
-    setCount((count) => count + 1);
-  }
-
-  const decrement = () => {
-    setCount((count) => count - 1);
-  }
-
   return (
-    <div>
-      <h2>Number: <b>{count}</b></h2>
-      <br /><br />
-      <button onClick={() => increment()}>Increment</button>{' '}
-      <button onClick={() => decrement()}>Decrement</button>{' '}
-    </div>
+    <>
+      <div className="header"></div>
+      <div className="container">
+        <div className="sidebar">
+          <button>
+            <Link to={`sub_app_1`}>Sub App 1</Link>
+          </button>
+          <button>
+            <Link to={`sub_app_2`}>Sub App 2</Link>
+          </button>
+        </div>
+        <div className="content">
+          <Outlet />
+        </div>
+      </div>
+    </>
   );
 };
 
