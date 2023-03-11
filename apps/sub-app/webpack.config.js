@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { dependencies } = require("./package.json");
 const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin;
 const path = require("path");
 
@@ -45,18 +46,30 @@ module.exports = {
       filename: '../dist/index.html'
     }),
     new ModuleFederationPlugin({
-      name: 'sub_app_1',
+      name: 'uapp1',
       filename: 'remoteEntry.js',
       // remotes: {
       //   remote: 'remote@http://localhost:8001/remoteEntry.js',
       // },
       exposes: {
-        // './Nav': './src/components/Nav',
+        './Nav': './src/components/Nav',
         // This is case you want to expose the entire App
         // no see the case but its possible
         // './App': './src/index',
       },
-      shared: {},
+      shared: {
+        // ...dependencies,
+        react: {
+          eager: true,
+          singleton: true,
+          requiredVersion: dependencies["react"],
+        },
+        "react-dom": {
+          eager: true,
+          singleton: true,
+          requiredVersion: dependencies["react-dom"],
+        },
+      },
     }),
   ]
 }

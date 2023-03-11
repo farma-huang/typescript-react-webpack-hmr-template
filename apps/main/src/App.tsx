@@ -1,6 +1,15 @@
   import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
+const Nav = React.lazy(() =>
+    // @ts-ignore
+    import("uapp1/Nav").then((module) => {
+        return {
+            default: module.Nav,
+        };
+    })
+);
+
 import "./App.css";
 
 const App = () => {
@@ -10,7 +19,7 @@ const App = () => {
       <div className="container">
         <div className="sidebar">
           <button>
-            <Link to={`sub_app_1`}>Sub App 1</Link>
+            <Link to={`uapp1`}><Nav /></Link>
           </button>
           <button>
             <Link to={`sub_app_2`}>Sub App 2</Link>

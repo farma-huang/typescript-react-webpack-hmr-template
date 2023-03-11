@@ -1,5 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require("path");
+const { dependencies } = require("./package.json");
+const ModuleFederationPlugin =
+  require("webpack").container.ModuleFederationPlugin;
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -41,6 +44,26 @@ module.exports = {
     hot: true
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: "host",
+      remotes: {
+        // sub_app_1: `sub_app_1@http://localhost:3001/remoteEntry.js`,
+        uapp1: `uapp1@https://typescriptreactwebpackhmrtempl-xuxo--3001.local-credentialless.webcontainer.io/remoteEntry.js`
+      },
+      shared: {
+        // ...dependencies,
+        // react: {
+        //   eager: true,
+        //   singleton: true,
+        //   requiredVersion: dependencies["react"],
+        // },
+        // "react-dom": {
+        //   eager: true,
+        //   singleton: true,
+        //   requiredVersion: dependencies["react-dom"],
+        // },
+      },
+    }),
     new HtmlWebpackPlugin({
       template: "public/index.html",
       hash: true, // Cache busting
